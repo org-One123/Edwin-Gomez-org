@@ -26,3 +26,10 @@ def get_all_tasks(status_filter: str = None):
         filtered = [t.to_dict() for t in tasks_db if t.status.upper() == status_filter.upper()]
         return filtered, 200
     return [task.to_dict() for task in tasks_db], 200
+
+def complete_task(task_id: int):
+    for task in tasks_db:
+        if task.id == task_id:
+            task.status = "COMPLETED"
+            return {"message": "Tarea marcada como completada", "task": task.to_dict()}, 200
+    return {"error": "Tarea no encontrada"}, 404
