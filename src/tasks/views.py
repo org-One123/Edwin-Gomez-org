@@ -21,5 +21,8 @@ def create_task(data: dict):
     except ValueError as e:
         return {"error": str(e)}, 400
 
-def get_all_tasks():
+def get_all_tasks(status_filter: str = None):
+    if status_filter:
+        filtered = [t.to_dict() for t in tasks_db if t.status.upper() == status_filter.upper()]
+        return filtered, 200
     return [task.to_dict() for task in tasks_db], 200
