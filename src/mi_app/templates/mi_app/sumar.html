@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Suma</title>
+</head>
+<body>
+    <h1>Calculadora de Suma</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="num1">Número 1:</label>
+        <input type="number" id="num1" name="num1" step="any" required>
+        <br><br>
+        <label for="num2">Número 2:</label>
+        <input type="number" id="num2" name="num2" step="any" required>
+        <br><br>
+        <button type="submit">Calcular Suma</button>
+    </form>
+
+    {% if resultado is not None %}
+        <h2>Resultado: <span id="resultado">{{ resultado }}</span></h2>
+    {% endif %}
+</body>
+</html>
