@@ -1,0 +1,28 @@
+name: Python Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Ejecutar prueba de suma en Python
+        run: |
+          python -c "a = 5; b = 10; suma = a + b; print(f'El resultado de la suma es: {suma}'); assert suma == 15, 'La suma es incorrecta'"
